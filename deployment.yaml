@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: protractor-tests
+  annotations:
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+    rules:
+        - http:
+            paths:
+            - path: /serviceuitest
+              backend:
+                serviceName: protractor-tests
+                servicePort: 80 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: protractor-tests
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: protractor-tests
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: protractor-tests
+spec:
+  selector:
+    matchLabels:
+      app: protractor-tests
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: protractor-tests
+    spec:
+      containers:
+      - name: protractor-tests
+        image: selenium/standalone-chrome:latest
+        ports:
+        - containerPort: 4444
+      - name: protractor-tests-runner
+        image: emandere/run-protractor-tests:latest
+        ports:
+          - containerPort: 80
