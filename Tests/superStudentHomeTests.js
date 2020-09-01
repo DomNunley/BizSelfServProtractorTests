@@ -1,7 +1,7 @@
-var ssdHome = require('../PageObjects/SuperStudentHome');
+var ssdHome = require('../PageObjects/superStudentHome');
 const { browser } = require('protractor');
 
-describe('SuperStudentDiscount homepage', function() {
+describe(':Navigate to home page and validate controls', function() {
   it('should have title SuperStudentDiscount', async function() {
     await ssdHome.get();
     expect(await browser.getTitle()).toEqual('SuperStudentDiscount');
