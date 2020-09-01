@@ -25,21 +25,12 @@ describe('Enter age and gpa then navigate to test discount', function() {
     (
        x  => expect(x).toEqual("20")
     );
-
-  });
-
-  it('should be not be eligible and not recieve discount', async function() {
+    
+    //Reset fields
     await ssdHome.get();
-    await ssdHome.setEligAge(29);
-    await ssdHome.setEligGpa(3.75);
+    await ssdHome.setEligAge(15);
+    await ssdHome.setEligGpa(3.5);
     await ssdHome.clickUpdateButton();
 
-    await workflows.navTestDiscount();
-    await testDiscount.setEligAge(30);
-    await testDiscount.setEligGpa(3.75);
-    await testDiscount.clickTestButton();
-
-    //var discountText = await testDiscount.getDiscountGrantedText();
-    //expect(text).toContain("false");
   });
 });
