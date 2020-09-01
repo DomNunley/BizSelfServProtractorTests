@@ -1,7 +1,7 @@
 var ssdHome = require('../PageObjects/SuperStudentHome');
 var testDiscount = require('../PageObjects/testDiscount');
 var viewDiscounts = require('../PageObjects/viewDiscount');
-var workflows = require('../WorkFlows/workflows')
+var workflows = require('../Workflows/workflows')
 const { browser } = require('protractor');
 
 describe('Enter age and gpa then navigate to test discount', function() {
