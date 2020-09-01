@@ -1,4 +1,4 @@
-var ssdHome = require('../PageObjects/superStudentHome');
+var ssdHome = require('../PageObjects/SuperStudentHome');
 const { browser } = require('protractor');
 
 describe(':Navigate to home page and validate controls', function() {

@@ -1,4 +1,4 @@
-var ssdHome = require('../PageObjects/superStudentHome');
+var ssdHome = require('../PageObjects/SuperStudentHome');
 var testDiscount = require('../PageObjects/testDiscount');
 var viewDiscounts = require('../PageObjects/viewDiscount');
 var workflows = require('../WorkFlows/workflows')
