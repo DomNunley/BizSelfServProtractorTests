@@ -3,7 +3,8 @@ const { browser, element } = require("protractor");
 var testDiscount = function() {
     var eligAgeInput = element(by.id("driverage"));
     var eligGpaInput = element(by.id('drivergpa'));
-    var discountText = element(by.id("discountamount"));
+    var discountGrantedText = element(by.id("discountgranted"));
+    var discountAmountText = element(by.id("discountamount"));
     var testButton = element(by.id("testdiscount"));
   
     this.get = async function() {
@@ -15,6 +16,12 @@ var testDiscount = function() {
       eligAgeInput.clear();
       await eligAgeInput.sendKeys(age);
     };
+      
+    this.getEligAge = async function() {
+      eligAgeInput.getText().then(text=> {
+        return text;
+      });
+    }
 
     this.setEligGpa = async function(gpa) {
         eligGpaInput.clear();
@@ -25,8 +32,14 @@ var testDiscount = function() {
         await testButton.click();
     }
 
-    this.getDiscountText = async function() {
-      await discountText.getText();
+    this.getDiscountGrantedText = async function() {
+      discountGrantedText.getText().then(text=> {
+        return text;
+      });
+    }
+
+    this.getDiscountAmountText = async function() {
+      await discountAmountText.getText();
     }
   };
 

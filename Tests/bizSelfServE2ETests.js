@@ -16,8 +16,8 @@ describe('Enter age and gpa then navigate to test discount', function() {
     await testDiscount.setEligGpa(3.75);
     await testDiscount.clickTestButton();
 
-    var text = await testDiscount.getDiscountText();
-
+    var text = testDiscount.getEligAge();
+    var discountText = testDiscount.getDiscountGrantedText();
     expect(text).toContain("true");
   });
 
@@ -32,6 +32,7 @@ describe('Enter age and gpa then navigate to test discount', function() {
     await testDiscount.setEligGpa(3.75);
     await testDiscount.clickTestButton();
 
-    expect(await browser.getTitle()).toEqual('SuperStudentDiscount');
+    var discountText = await testDiscount.getDiscountGrantedText();
+    expect(text).toContain("false");
   });
 });
