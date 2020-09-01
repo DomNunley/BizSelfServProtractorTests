@@ -11,14 +11,19 @@ app.get('/api/e2e', function (req, res) {
     exec("protractor conf.js", (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
+            res.statusCode = 500;
+            res.setHeader('Content-Type', 'application/json');
+            res.send(`{error: \"${error.message}\" }`);
             return;
         }
         if (stderr) {
             console.log(`stderr: ${stderr}`);
+            res.statusCode = 500;
+            res.setHeader('Content-Type', 'application/json');
+            res.send(`{error: \"${error.message}\" }`);
             return;
         }
         let rawdata = fs.readFileSync('Report.json');
-        //let report = JSON.parse(rawdata);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.send(rawdata)
